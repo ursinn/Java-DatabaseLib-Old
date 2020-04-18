@@ -30,35 +30,19 @@ import dev.ursinn.java.databaselib.DatabaseInterface;
 import java.sql.*;
 
 /**
- * SQL - MySQL Class
+ * SQL - SqLite Class
  *
  * @author Ursin Filli
  * @version 1.0
  * @since 1.0
  */
-public class MySQL implements DatabaseInterface {
+public class SqLite implements DatabaseInterface {
 
     private static Connection connection;
-    private final String host;
-    private final String port;
     private final String database;
-    private final String username;
-    private final String password;
 
-    /**
-     * @param host     Host
-     * @param port     Port
-     * @param database Database
-     * @param username Username
-     * @param password Password
-     * @since 1.0
-     */
-    public MySQL(String host, String port, String database, String username, String password) {
-        this.host = host;
-        this.port = port;
+    public SqLite(String database) {
         this.database = database;
-        this.username = username;
-        this.password = password;
     }
 
     /**
@@ -69,11 +53,8 @@ public class MySQL implements DatabaseInterface {
      */
     @Override
     public void connect() throws SQLException {
-        if (isConnected())
-            close();
         connection = DriverManager.getConnection(
-                "jdbc:mysql://" + this.host + ":" + this.port + "/" + this.database + "?autoReconnect=true",
-                this.username, this.password);
+                "jdbc:sqlite:" + database);
     }
 
     /**
@@ -152,5 +133,4 @@ public class MySQL implements DatabaseInterface {
             connect();
         return connection.prepareStatement(sql).executeQuery();
     }
-
 }
