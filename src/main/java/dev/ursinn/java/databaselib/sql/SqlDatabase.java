@@ -23,19 +23,19 @@
  *
  */
 
-package dev.ursinn.java.databaselib;
+package dev.ursinn.java.databaselib.sql;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Database Interface
+ * SQL - Database Interface
  *
  * @author Ursin Filli
  * @version 1.0
  * @since 1.0
  */
-public interface DatabaseInterface {
+public interface SqlDatabase {
 
     /**
      * Connect to Database

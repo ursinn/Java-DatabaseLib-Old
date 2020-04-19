@@ -25,22 +25,25 @@
 
 package dev.ursinn.java.databaselib.sql;
 
-import dev.ursinn.java.databaselib.DatabaseInterface;
-
 import java.sql.*;
 
 /**
- * SQL - SqLite Class
+ * SQL - SQLite Database
  *
  * @author Ursin Filli
  * @version 1.0
  * @since 1.0
  */
-public class SqLite implements DatabaseInterface {
+public class SqLite implements SqlDatabase {
 
     private static Connection connection;
     private final String database;
 
+    /**
+     * Constructor
+     *
+     * @param database Database
+     */
     public SqLite(String database) {
         this.database = database;
     }

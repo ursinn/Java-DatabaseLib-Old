@@ -28,13 +28,13 @@ package dev.ursinn.java.databaselib.sql;
 import java.sql.*;
 
 /**
- * SQL - MySQL / MariaDB Database
+ * SQL - PostgreSQL Database
  *
  * @author Ursin Filli
  * @version 1.0
  * @since 1.0
  */
-public class MySQL implements SqlDatabase {
+public class PostgreSQL implements SqlDatabase {
 
     private static Connection connection;
     private final String host;
@@ -53,7 +53,7 @@ public class MySQL implements SqlDatabase {
      * @param password Password
      * @since 1.0
      */
-    public MySQL(String host, String port, String database, String username, String password) {
+    public PostgreSQL(String host, String port, String database, String username, String password) {
         this.host = host;
         this.port = port;
         this.database = database;
@@ -72,7 +72,7 @@ public class MySQL implements SqlDatabase {
         if (isConnected())
             close();
         connection = DriverManager.getConnection(
-                "jdbc:mysql://" + this.host + ":" + this.port + "/" + this.database,
+                "jdbc:postgresql://" + this.host + ":" + this.port + "/" + this.database,
                 this.username, this.password);
     }
 

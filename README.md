@@ -9,6 +9,7 @@ Java Database Helper Library
 
 ## **SQL Databases**
 - MySQL / MariaDB
-- SqLite
+- PostgreSQL
+- SQLite
 
 ## **NoSQL Databases**
