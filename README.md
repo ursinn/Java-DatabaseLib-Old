@@ -13,3 +13,5 @@ Java Database Helper Library
 - SQLite
 
 ## **NoSQL Databases**
+- MongoDB (Planned)
+- Redis (Planned)

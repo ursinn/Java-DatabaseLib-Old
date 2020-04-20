@@ -23,40 +23,17 @@
  *
  */
 
-package dev.ursinn.java.databaselib.sql;
-
-import java.sql.*;
+package dev.ursinn.java.databaselib.nosql;
 
 /**
- * SQL - SQLite Database
+ * NoSQL - MongoDB Database
  *
  * @author Ursin Filli
  * @version 1.0
  * @since 1.0
  */
-public class SqLite extends SQL {
+public class MongoDB implements NoSQL {
 
-    private final String database;
 
-    /**
-     * Constructor
-     *
-     * @param database Database
-     */
-    public SqLite(String database) {
-        this.database = database;
-    }
-
-    /**
-     * Connect to Database
-     *
-     * @throws SQLException In Case of Error
-     * @since 1.0
-     */
-    @Override
-    public void connect() throws SQLException {
-        connection = DriverManager.getConnection(
-                "jdbc:sqlite:" + database);
-    }
 
 }

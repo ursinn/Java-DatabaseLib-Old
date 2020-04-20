@@ -25,17 +25,18 @@
 
 package dev.ursinn.java.databaselib.sql;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 /**
- * SQL - Database Interface
+ * SQL - SQL Class
  *
  * @author Ursin Filli
  * @version 1.0
  * @since 1.0
  */
-public interface SqlDatabase {
+public class SQL {
+
+    protected static Connection connection;
 
     /**
      * Connect to Database
@@ -43,7 +44,11 @@ public interface SqlDatabase {
      * @throws SQLException In Case of Error
      * @since 1.0
      */
-    void connect() throws SQLException;
+    public void connect() throws SQLException {
+        if (isConnected())
+            close();
+        connection = DriverManager.getConnection("");
+    }
 
     /**
      * Close Database Connection
@@ -51,7 +56,10 @@ public interface SqlDatabase {
      * @throws SQLException In Case of Error
      * @since 1.0
      */
-    void close() throws SQLException;
+    public final void close() throws SQLException {
+        if (isConnected())
+            connection.close();
+    }
 
     /**
      * Check if a Connection exists to Database
@@ -60,7 +68,11 @@ public interface SqlDatabase {
      * @throws SQLException In Case of Error
      * @since 1.0
      */
-    boolean isConnected() throws SQLException;
+    public final boolean isConnected() throws SQLException {
+        if (connection != null)
+            return !connection.isClosed();
+        return false;
+    }
 
     /**
      * Update Data
@@ -70,7 +82,11 @@ public interface SqlDatabase {
      * @throws SQLException In Case of Error
      * @since 1.0
      */
-    int update(String sql) throws SQLException;
+    public final int update(String sql) throws SQLException {
+        if (!isConnected())
+            connect();
+        return connection.prepareStatement(sql).executeUpdate();
+    }
 
     /**
      * Update Data
@@ -81,7 +97,16 @@ public interface SqlDatabase {
      * @throws SQLException In Case of Error
      * @since 1.0
      */
-    long updateId(String sql) throws SQLException;
+    public final long updateId(String sql) throws SQLException {
+        if (!isConnected())
+            connect();
+        PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        ps.executeUpdate();
+        ResultSet rs = ps.getGeneratedKeys();
+        if (rs.next())
+            return rs.getLong(1);
+        return 0;
+    }
 
     /**
      * Get Data
@@ -91,5 +116,9 @@ public interface SqlDatabase {
      * @throws SQLException In Case of Error
      * @since 1.0
      */
-    ResultSet getResult(String sql) throws SQLException;
+    public final ResultSet getResult(String sql) throws SQLException {
+        if (!isConnected())
+            connect();
+        return connection.prepareStatement(sql).executeQuery();
+    }
 }
