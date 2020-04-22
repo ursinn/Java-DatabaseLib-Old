@@ -25,6 +25,8 @@
 
 package dev.ursinn.java.databaselib.sql;
 
+import dev.ursinn.java.databaselib.Database;
+
 import java.sql.*;
 
 /**
@@ -34,7 +36,7 @@ import java.sql.*;
  * @version 1.0
  * @since 1.0
  */
-public class SQL {
+public class SQL implements Database {
 
     protected static Connection connection;
 

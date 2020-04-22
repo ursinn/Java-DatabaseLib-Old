@@ -23,19 +23,7 @@
  *
  */
 
-package dev.ursinn.java.databaselib.nosql;
+package dev.ursinn.java.databaselib;
 
-import dev.ursinn.java.databaselib.Database;
-
-/**
- * NoSQL - MongoDB Database
- *
- * @author Ursin Filli
- * @version 1.0
- * @since 1.0
- */
-public class MongoDB implements NoSQL, Database {
-
-
-
+public interface Database {
 }

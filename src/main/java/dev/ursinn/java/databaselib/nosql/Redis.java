@@ -25,6 +25,8 @@
 
 package dev.ursinn.java.databaselib.nosql;
 
+import dev.ursinn.java.databaselib.Database;
+
 /**
  * NoSQL - Redis Database
  *
@@ -32,7 +34,7 @@ package dev.ursinn.java.databaselib.nosql;
  * @version 1.0
  * @since 1.0
  */
-public class Redis implements NoSQL {
+public class Redis implements NoSQL, Database {
 
 
 
